@@ -7,10 +7,17 @@ namespace core
         public void Fly();
     }
 
+    public class NoopWings : IFly
+    {
+        public void Fly() {}
+    }
+
     public class Bird
     {
+
         private readonly IFly _wings;
         public Bird(IFly wings) => _wings = wings ?? throw new ArgumentNullException(nameof(wings));
+        public static Bird Factory(IFly wings = null) => new Bird(wings ?? new NoopWings());
 
         public event EventHandler Died;
 
@@ -25,9 +32,6 @@ namespace core
             _wings.Fly();
             FlappedWings?.Invoke(this, EventArgs.Empty);
         }
-        public void NavigateSuccessful(Obstacle obstacle)
-        {
-            NavigatedObstacleSuccessfully?.Invoke(this, obstacle);
-        }
+        public void NavigateSuccessful(Obstacle obstacle) => NavigatedObstacleSuccessfully?.Invoke(this, obstacle);
     }
 }
