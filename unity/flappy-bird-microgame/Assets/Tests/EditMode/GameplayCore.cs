@@ -1,4 +1,4 @@
-using core;
+using Core;
 using NUnit.Framework;
 
 namespace Tests.EditMode

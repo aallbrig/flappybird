@@ -4,7 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "core"
+        "Core"
     ],
     "includePlatforms": [
         "Editor"
