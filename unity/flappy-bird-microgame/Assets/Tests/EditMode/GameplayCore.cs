@@ -3,11 +3,6 @@ using NUnit.Framework;
 
 namespace Tests.EditMode
 {
-    public class NoopWings : IFly
-    {
-        public void Fly() {}
-    }
-
     public class TestWings : IFly
     {
         public bool Flapped;
@@ -19,7 +14,7 @@ namespace Tests.EditMode
         [Test]
         public void BirdCanBeKilledByObstacle()
         {
-            var bird = new Bird(new NoopWings());
+            var bird = Bird.Factory();
             var birdHasDied = false;
             bird.Died += (sender, args) => birdHasDied = true;
             var obstacle = new Obstacle();
@@ -33,20 +28,20 @@ namespace Tests.EditMode
         public void BirdCanFlap()
         {
             var testWings = new TestWings();
-            var bird = new Bird(testWings);
+            var bird = Bird.Factory(testWings);
             var birdHasFlappedWings = false;
             bird.FlappedWings += (sender, args) => birdHasFlappedWings = true;
 
             bird.FlapWings();
 
-            Assert.IsTrue(birdHasFlappedWings);
             Assert.IsTrue(testWings.Flapped);
+            Assert.IsTrue(birdHasFlappedWings);
         }
 
         [Test]
         public void BirdCanSuccessfullyNavigateObstacles()
         {
-            var bird = new Bird(new NoopWings());
+            var bird = Bird.Factory();
             var obstacle = new Obstacle();
             var successfulNavigation = false;
             bird.NavigatedObstacleSuccessfully += (sender, args) => successfulNavigation = args == obstacle;
