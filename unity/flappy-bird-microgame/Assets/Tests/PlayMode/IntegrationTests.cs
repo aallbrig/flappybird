@@ -1,4 +1,5 @@
 using System.Collections;
+using MonoBehaviours;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -30,6 +31,23 @@ namespace Tests.PlayMode
             yield return new WaitForSeconds(1);
 
             Assert.AreNotEqual(birdOriginalPosition, bird.transform.position);
+        }
+
+        [UnityTest]
+        public IEnumerator PlayersBirdCanFly()
+        {
+            var bird = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Bird"));
+            yield return null; // allow MB lifecycle methods to be called
+            var rigidbody = bird.GetComponent<Rigidbody>();
+            rigidbody.useGravity = false;
+            rigidbody.velocity = Vector3.zero;
+            var beforeVelocity = rigidbody.velocity;
+            var script = bird.GetComponent<BirdBehaviour>();
+
+            script.Fly();
+            yield return null;
+
+            Assert.IsTrue(rigidbody.velocity.normalized.y > beforeVelocity.normalized.y);
         }
     }
 }
