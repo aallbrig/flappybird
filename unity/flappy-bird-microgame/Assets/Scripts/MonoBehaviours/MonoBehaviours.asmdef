@@ -1,0 +1,16 @@
+{
+    "name": "MonoBehaviours",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b0de93c66a5be4f7887e4ad9712e69e8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
