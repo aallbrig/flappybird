@@ -4,8 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "core",
-        "MonoBehaviours"
+        "MonoBehaviours",
+        "Core"
     ],
     "includePlatforms": [
         "Editor"

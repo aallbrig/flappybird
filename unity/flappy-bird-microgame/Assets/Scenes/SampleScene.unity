@@ -260,7 +260,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -403,6 +402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 217350719332336324, guid: de6a4f77c27d94b23a1bd085f30ffce8, type: 3}
+      propertyPath: flapStrength
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 217350719332336324, guid: de6a4f77c27d94b23a1bd085f30ffce8, type: 3}
+      propertyPath: flapsPerSecond
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2367192104782718794, guid: de6a4f77c27d94b23a1bd085f30ffce8, type: 3}
       propertyPath: m_Name
       value: Bird
