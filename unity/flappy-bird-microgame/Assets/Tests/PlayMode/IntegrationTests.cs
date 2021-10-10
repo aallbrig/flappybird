@@ -6,17 +6,6 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class Obstacles
-    {
-        [Test]
-        public void AssetLoadable()
-        {
-            var prefab = Resources.Load<GameObject>("Prefabs/Obstacle");
-            var obstacle = Object.Instantiate(prefab);
-            Assert.NotNull(obstacle);
-        }
-    }
-
     public class Game
     {
         [SetUp] public void Setup() => Time.timeScale = 10F;
