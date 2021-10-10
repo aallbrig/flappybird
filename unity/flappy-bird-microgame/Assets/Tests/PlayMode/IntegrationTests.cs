@@ -49,5 +49,24 @@ namespace Tests.PlayMode
 
             Assert.IsTrue(rigidbody.velocity.normalized.y > beforeVelocity.normalized.y);
         }
+
+        [UnityTest]
+        public IEnumerator ObstaclesKillBirds()
+        {
+            var bird = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Bird"));
+            yield return null; // allow MB lifecycle methods to be called
+            var script = bird.GetComponent<BirdBehaviour>();
+            var birdIsDead = false;
+            script.Bird.Died += (sender, args) => birdIsDead = true;
+
+            var obstacle = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Obstacle"));
+            yield return null;
+
+            bird.transform.position = Vector3.zero;
+            obstacle.transform.position = Vector3.zero;
+            yield return null;
+
+            Assert.IsTrue(birdIsDead);
+        }
     }
 }
