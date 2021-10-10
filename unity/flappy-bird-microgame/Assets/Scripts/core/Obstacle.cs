@@ -1,7 +1,12 @@
 namespace core
 {
+    public interface IKillable
+    {
+        public void Kill();
+    }
+
     public class Obstacle
     {
-        public void Kill(Bird bird) => bird.Die();
+        public void Kill(IKillable victim) => victim.Kill();
     }
 }

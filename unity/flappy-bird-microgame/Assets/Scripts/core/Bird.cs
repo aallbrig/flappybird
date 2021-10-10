@@ -12,11 +12,11 @@ namespace core
         public void Fly() {}
     }
 
-    public class Bird
+    public class Bird: IKillable
     {
 
         private readonly IFly _wings;
-        public Bird(IFly wings) => _wings = wings ?? throw new ArgumentNullException(nameof(wings));
+        private Bird(IFly wings) => _wings = wings ?? throw new ArgumentNullException(nameof(wings));
         public static Bird Factory(IFly wings = null) => new Bird(wings ?? new NoopWings());
 
         public event EventHandler Died;
@@ -25,7 +25,7 @@ namespace core
 
         public event EventHandler<Obstacle> NavigatedObstacleSuccessfully;
 
-        public void Die() => Died?.Invoke(this, EventArgs.Empty);
+        private void Die() => Died?.Invoke(this, EventArgs.Empty);
 
         public void FlapWings()
         {
@@ -33,5 +33,6 @@ namespace core
             FlappedWings?.Invoke(this, EventArgs.Empty);
         }
         public void NavigateSuccessful(Obstacle obstacle) => NavigatedObstacleSuccessfully?.Invoke(this, obstacle);
+        public void Kill() => Die();
     }
 }
