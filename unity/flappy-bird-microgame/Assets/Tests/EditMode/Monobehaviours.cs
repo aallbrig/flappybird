@@ -25,7 +25,7 @@ namespace Tests.EditMode
         [Test]
         public void ObstaclesCanKillThings()
         {
-            var sut = new GameObject().AddComponent<ObstacleBehaviour>();
+            var sut = new GameObject().AddComponent<BirdKiller>();
             var bird = new GameObject().AddComponent<BirdBehaviour>();
             var killed = false;
             bird.Bird.Died += (sender, args) => killed = true;
@@ -33,6 +33,22 @@ namespace Tests.EditMode
             sut.KillBird(bird);
 
             Assert.IsTrue(killed);
+        }
+    }
+
+    public class RewarderComponent
+    {
+        [Test]
+        public void BirdsCanBeRewarded()
+        {
+            var bird = new GameObject().AddComponent<BirdBehaviour>();
+            var sut = new GameObject().AddComponent<RewardBehaviour>();
+            var rewarded = false;
+            bird.Bird.NavigatedObstacleSuccessfully += (sender, obstacle) => rewarded = true;
+
+            sut.Reward(bird.Bird);
+
+            Assert.True(rewarded);
         }
     }
 }

@@ -12,12 +12,13 @@ namespace Core
         public void Fly() {}
     }
 
-    public class Bird : IKillable
+    public class Bird : IKillable, IRewardable
     {
 
         private readonly IFly _wings;
         private Bird(IFly wings) => _wings = wings ?? throw new ArgumentNullException(nameof(wings));
         public void Kill() => Die();
+        public void Reward() => NavigateSuccessful(new Obstacle());
         public static Bird Factory(IFly wings = null) => new Bird(wings ?? new NoopWings());
 
         public event EventHandler Died;

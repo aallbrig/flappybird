@@ -57,5 +57,25 @@ namespace Tests.PlayMode
 
             Assert.IsTrue(birdIsDead);
         }
+
+        [UnityTest] public IEnumerator RewardBoxesGiveBirdsRewards()
+        {
+            var bird = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Bird"));
+            yield return null; // allow MB lifecycle methods to be called
+            var script = bird.GetComponent<BirdBehaviour>();
+            var rewarded = false;
+            script.Bird.NavigatedObstacleSuccessfully += (sender, args) => rewarded = true;
+
+            var sut = Object.Instantiate(Resources.Load<GameObject>("Prefabs/RewardBox"));
+            yield return null;
+
+            bird.transform.position = Vector3.zero;
+            sut.transform.position = Vector3.zero;
+            yield return null;
+            sut.transform.position = Vector3.right * 100;
+            yield return null;
+
+            Assert.IsTrue(rewarded);
+        }
     }
 }

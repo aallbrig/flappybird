@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MonoBehaviours
 {
-    public class ObstacleBehaviour : MonoBehaviour
+    public class BirdKiller : MonoBehaviour
     {
         private readonly Obstacle _obstacle = new Obstacle();
         private void OnTriggerEnter(Collider other)
