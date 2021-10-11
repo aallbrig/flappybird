@@ -9,7 +9,7 @@ namespace MonoBehaviours
         private void OnTriggerEnter(Collider other)
         {
             var bird = other.gameObject.GetComponent<BirdBehaviour>();
-            if (bird != null && bird.Bird != null)
+            if (bird != null && bird.Bird != null && bird.IsAlive)
                 KillBird(bird);
         }
 
