@@ -10,14 +10,29 @@ namespace Tests.EditMode
         public void BirdsCanFly()
         {
             var gameObject = new GameObject();
-            var script = gameObject.AddComponent<BirdBehaviour>();
-            script.NewBird();
+            var sut = gameObject.AddComponent<BirdBehaviour>();
             var flappedWings = false;
-            script.Bird.FlappedWings += (sender, args) => flappedWings = true;
+            sut.Bird.FlappedWings += (sender, args) => flappedWings = true;
 
-            script.Fly();
+            sut.Fly();
 
             Assert.IsTrue(flappedWings);
+        }
+    }
+
+    public class ObstacleComponent
+    {
+        [Test]
+        public void ObstaclesCanKillThings()
+        {
+            var sut = new GameObject().AddComponent<ObstacleBehaviour>();
+            var bird = new GameObject().AddComponent<BirdBehaviour>();
+            var killed = false;
+            bird.Bird.Died += (sender, args) => killed = true;
+
+            sut.KillBird(bird);
+
+            Assert.IsTrue(killed);
         }
     }
 }

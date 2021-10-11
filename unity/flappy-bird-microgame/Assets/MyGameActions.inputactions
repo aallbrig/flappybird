@@ -47,6 +47,17 @@
                     "action": "FlapWings",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e770623d-a365-4f66-87bb-85c5a2dfc18a",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlapWings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

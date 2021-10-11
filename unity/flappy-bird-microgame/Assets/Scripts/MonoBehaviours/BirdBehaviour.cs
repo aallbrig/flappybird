@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using UnityEngine;
 using Core;
+using UnityEngine;
 
 namespace MonoBehaviours
 {
@@ -10,25 +10,18 @@ namespace MonoBehaviours
     {
         public int flapStrength = 3;
         public float flapsPerSecond = 2.0f;
-        public Bird Bird { get; private set; }
-        private Rigidbody _rigidbody;
         private bool _canFlap = true;
 
-        public void NewBird()
-        {
-            Bird = Bird.Factory();
-        }
+        private Rigidbody _rigidbody;
+
+        public Bird Bird { get; } = Bird.Factory();
 
         public void Start()
         {
-            NewBird();
             SetupListeners();
             _rigidbody = GetComponent<Rigidbody>();
         }
-        private void SetupListeners()
-        {
-            Bird.FlappedWings += OnFlappedWings;
-        }
+        private void SetupListeners() => Bird.FlappedWings += OnFlappedWings;
 
         private void OnFlappedWings(object sender, EventArgs eventArgs)
         {
@@ -41,9 +34,7 @@ namespace MonoBehaviours
         public void Fly()
         {
             if (_canFlap)
-            {
                 Bird.FlapWings();
-            }
         }
 
         private IEnumerator ResetFlap()
