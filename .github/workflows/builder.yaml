@@ -60,7 +60,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           branch: main
-          folder: docs
-          target-folder: build/WebGL
+          folder: build/WebGL
 
 
