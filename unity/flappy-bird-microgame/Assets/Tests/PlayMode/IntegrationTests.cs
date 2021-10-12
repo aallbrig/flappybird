@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class Game
+    public class IntegrationTests
     {
         [SetUp] public void Setup() => Time.timeScale = 10F;
         [TearDown] public void Teardown() => Time.timeScale = 0F;

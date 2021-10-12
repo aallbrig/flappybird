@@ -25,7 +25,7 @@ namespace Tests.EditMode
         [Test]
         public void ObstaclesCanKillThings()
         {
-            var sut = new GameObject().AddComponent<BirdKiller>();
+            var sut = new GameObject().AddComponent<ObstacleBehaviour>();
             var bird = new GameObject().AddComponent<BirdBehaviour>();
             var killed = false;
             bird.Bird.Died += (sender, args) => killed = true;

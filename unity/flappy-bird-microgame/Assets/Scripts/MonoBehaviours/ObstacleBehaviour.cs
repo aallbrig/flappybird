@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace MonoBehaviours
 {
-    public class BirdKiller : MonoBehaviour
+    public class ObstacleBehaviour : MonoBehaviour
     {
-        private readonly Obstacle _obstacle = new Obstacle();
+        private readonly Core.Obstacle _obstacle = new Core.Obstacle();
         private void OnTriggerEnter(Collider other)
         {
             var bird = other.gameObject.GetComponent<BirdBehaviour>();
