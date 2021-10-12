@@ -44,6 +44,13 @@ jobs:
           buildName: ${{ matrix.targetPlatform }}
           buildsPath: build
 
+      - uses: actions/cache@v2
+        with:
+          path: build/${{ matrix.targetPlatform }}
+          key: Build-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Build-
+
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
@@ -54,6 +61,6 @@ jobs:
         with:
           branch: main
           folder: docs
-          targetFolder: build/WebGL
+          target-folder: build/WebGL
 
 
