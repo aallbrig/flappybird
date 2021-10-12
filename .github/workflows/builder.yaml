@@ -61,5 +61,6 @@ jobs:
         with:
           branch: main
           folder: build/WebGL
+          target-folder: docs
 
 
