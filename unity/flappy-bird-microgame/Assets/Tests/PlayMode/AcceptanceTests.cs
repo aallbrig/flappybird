@@ -22,7 +22,7 @@ namespace Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator PlayerControlsAnAvatar()
+        public IEnumerator PlayerControlsABird()
         {
             GameObject playerGameObject = null;
             Game.PlayerSpawned += playerSpawned => playerGameObject = playerSpawned;
