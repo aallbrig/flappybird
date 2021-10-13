@@ -32,6 +32,18 @@ namespace MonoBehaviours
             Bird.Died -= OnDied;
         }
 
+        private void Update()
+        {
+            MobileDeviceHack();
+        }
+        private void MobileDeviceHack()
+        {
+            if (Input.touchCount > 0)
+            {
+                Fly();
+            }
+        }
+
         private void OnFlappedWings(object sender, EventArgs eventArgs)
         {
             _canFlap = false;
