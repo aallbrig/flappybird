@@ -35,8 +35,20 @@ namespace Tests.PlayMode
 
             script.Fly();
             yield return null;
+            yield return null;
 
             Assert.IsTrue(rigidbody.velocity.normalized.y > beforeVelocity.normalized.y);
+        }
+
+        [UnityTest]
+        public IEnumerator ObstacleGroupsMoveLeft()
+        {
+            var sut = Object.Instantiate(Resources.Load<GameObject>("Prefabs/ObstacleGroup"));
+            sut.transform.position = Vector3.zero;
+            yield return null; // allow MB lifecycle methods to be called
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.IsTrue(sut.transform.position.x < 0);
         }
 
         [UnityTest]
@@ -58,7 +70,8 @@ namespace Tests.PlayMode
             Assert.IsTrue(birdIsDead);
         }
 
-        [UnityTest] public IEnumerator RewardBoxesGiveBirdsRewards()
+        [UnityTest]
+        public IEnumerator RewardBoxesGiveBirdsRewards()
         {
             var bird = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Bird"));
             yield return null; // allow MB lifecycle methods to be called

@@ -6,17 +6,14 @@ namespace MonoBehaviours
 {
     public class Game : MonoBehaviour
     {
-        public static event Action GameStarted;
-        public static event Action<GameObject> PlayerSpawned;
-        public static event Action<GameObject> ObstacleSpawned;
-        
+
         public GameObject playerPrefab;
         public GameObject obstacleGroupPrefab;
         public float spawnInterval = 3.0f;
+        private Camera _camera;
+        private GameObject _obstacleSpawn;
         private GameObject _playerInstance;
         private GameObject _playerSpawn;
-        private GameObject _obstacleSpawn;
-        private Camera _camera;
 
         private void OnEnable()
         {
@@ -33,6 +30,12 @@ namespace MonoBehaviours
             Play();
         }
 
+        public static event Action GameStarted;
+
+        public static event Action<GameObject> PlayerSpawned;
+
+        public static event Action<GameObject> ObstacleSpawned;
+
         private IEnumerator SpawnInfiniteObstacleGroups()
         {
             while (true)
@@ -42,15 +45,9 @@ namespace MonoBehaviours
             }
         }
 
-        private Vector3 CalculatePlayerSpawn()
-        {
-            return _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10));
-        }
+        private Vector3 CalculatePlayerSpawn() => _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10));
 
-        private Vector3 CalculateObstacleSpawn()
-        {
-            return _camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10));
-        }
+        private Vector3 CalculateObstacleSpawn() => _camera.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10));
 
         private void SpawnPlayer()
         {
@@ -66,9 +63,6 @@ namespace MonoBehaviours
             ObstacleSpawned?.Invoke(obstacleGroup);
         }
 
-        private void Play()
-        {
-            GameStarted?.Invoke();
-        }
+        private void Play() => GameStarted?.Invoke();
     }
 }

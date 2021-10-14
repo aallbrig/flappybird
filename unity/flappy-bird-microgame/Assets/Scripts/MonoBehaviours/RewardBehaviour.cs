@@ -7,7 +7,7 @@ namespace MonoBehaviours
     {
         private void OnTriggerExit(Collider other)
         {
-            var bird = other.gameObject.GetComponent<BirdBehaviour>();
+            var bird = other.gameObject.GetComponent<IContainBird>();
             if (bird != null)
                 Reward(bird.Bird);
         }

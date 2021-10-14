@@ -15,7 +15,7 @@ namespace Tests.PlayMode
             Game.GameStarted += () => gameStarted = true;
 
             Object.Instantiate(Resources.Load<GameObject>("Prefabs/Game"));
-            
+
             yield return null;
 
             Assert.IsTrue(gameStarted);

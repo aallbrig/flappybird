@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace MonoBehaviours
@@ -7,9 +6,6 @@ namespace MonoBehaviours
     {
         public float speed = 10f;
 
-        private void Update()
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
+        private void Update() => transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 }

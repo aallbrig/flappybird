@@ -6,20 +6,18 @@ using UnityEngine;
 namespace MonoBehaviours
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class BirdBehaviour : MonoBehaviour
+    public class BirdBehaviour : MonoBehaviour, IContainBird
     {
         public float deathFreezeTime = 0.6f;
         public int flapStrength = 3;
         public float flapsPerSecond = 2.0f;
-        private bool _canFlap = true;
 
+        private bool _canFlap = true;
         private Rigidbody _rigidbody;
 
-        public bool IsAlive { get; private set; } = true;
-
-        public Bird Bird { get; } = Bird.Factory();
-
         private void Start() => _rigidbody = GetComponent<Rigidbody>();
+
+        private void Update() => MobileWebGLHack();
         private void OnEnable()
         {
             _canFlap = true;
@@ -32,16 +30,13 @@ namespace MonoBehaviours
             Bird.Died -= OnDied;
         }
 
-        private void Update()
-        {
-            MobileDeviceHack();
-        }
-        private void MobileDeviceHack()
+        public Bird Bird { get; } = Bird.Of();
+
+        // Grr, why doesn't the new unity input system work on mobile webGL?!
+        private void MobileWebGLHack()
         {
             if (Input.touchCount > 0)
-            {
                 Fly();
-            }
         }
 
         private void OnFlappedWings(object sender, EventArgs eventArgs)
@@ -54,7 +49,6 @@ namespace MonoBehaviours
 
         private void OnDied(object sender, EventArgs eventArgs)
         {
-            IsAlive = false;
             _canFlap = false;
             // SFX: Play died audio
             StartCoroutine(DestroySelfAfterSeconds(deathFreezeTime));
