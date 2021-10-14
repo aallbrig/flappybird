@@ -26,16 +26,15 @@ namespace Tests.PlayMode
         public IEnumerator PlayersBirdCanFly()
         {
             var bird = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Bird"));
-            yield return null; // allow MB lifecycle methods to be called
             var rigidbody = bird.GetComponent<Rigidbody>();
             rigidbody.useGravity = false;
             rigidbody.velocity = Vector3.zero;
             var beforeVelocity = rigidbody.velocity;
             var script = bird.GetComponent<BirdBehaviour>();
+            yield return null; // allow MB lifecycle methods to be called
 
             script.Fly();
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
 
             Assert.IsTrue(rigidbody.velocity.normalized.y > beforeVelocity.normalized.y);
         }
